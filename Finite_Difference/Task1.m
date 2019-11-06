@@ -1,2 +1,4 @@
 %Task 1
-capacitor(1,1,2,2,20,1E-3,1)
+close all; clear all
+capacitor_FD(0.5,0.5,2,2,100,1E-3,1)
+
