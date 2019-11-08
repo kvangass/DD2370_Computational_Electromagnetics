@@ -2,7 +2,7 @@
 % Compute capacitance per unit length of 
 % a coaxial pair of rectangles
 % --------------------------------------------------------------
-function cap = capacitor_FD(a, b, c, d, n, tol, rel)
+function cap = capacitor_FD2(a, b, c, d, n, tol, rel)
 
 % Arguments:
 %    a   =  width of inner conductor

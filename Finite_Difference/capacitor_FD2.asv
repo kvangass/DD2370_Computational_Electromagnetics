@@ -16,19 +16,18 @@ function cap = capacitor_FD2(a, b, c, d, n, tol, rel)
 % Returns:
 %    cap = capacitance per unit length [pF/m]
 % %%%%%%%%%%%%%%%%%%%%%
-%Make Grids
-N = n+1;
-%Grid spacing
-h = 0.5*c/n;
-%number of segments on 'd'
-m = round(0.5*d/h);
-
+% %Make Grids
 % N = n+1;
-% n2 = a*n/c;
-% n2=round(n2);
-% h = a/n2;
+% %Grid spacing
+% h = 0.5*c/n;
 % %number of segments on 'd'
 % m = round(0.5*d/h);
+
+
+n2 = a*n/c;
+round(n2)
+%number of segments on 'd'
+m = round(0.5*d/h);
 
 %%%%%%%%%%%%%%%%%%%%%%%
 M = m+1;
