@@ -11,7 +11,6 @@ U = 1;
 % Read the grid from the file 'unimesh0.mat'. 
 % This file contains the variables no2xy, el2no, noInt, noExt
 load unimesh0
-
 noNum = size(no2xy,2); % number of nodes
 elNum = size(el2no,2); % number of elements
 
@@ -22,7 +21,7 @@ no2xy = 1e-2*no2xy; % from m to cm
 
 % Assemble the matrix A and vector b.
 % Create noNum x noNum matrix
-A = zeros(noNum);
+A = sparse(noNum,noNum);
 b = zeros(noNum,1);
   
 for elIdx = 1:elNum
@@ -65,7 +64,5 @@ W = 0.5*eps0*(z'*A*z);
 C = 2*W/U^2;
 
 disp(['C per unit length [pF/m] = ' num2str(C/1e-12)])
-
-PlotPotential(no2xy, el2no, z)
 profile viewer;
 profsave
