@@ -1,4 +1,5 @@
 profile on;
+
 % Physical constants
 mu0 = 4*pi*1e-7;         % Permeability in vacuum
 c0 = 299792456;          % Speed of light in vacuum
@@ -10,6 +11,7 @@ U = 1;
 % Read the grid from the file 'unimesh0.mat'. 
 % This file contains the variables no2xy, el2no, noInt, noExt
 load unimesh0
+
 noNum = size(no2xy,2); % number of nodes
 elNum = size(el2no,2); % number of elements
 
@@ -63,5 +65,7 @@ W = 0.5*eps0*(z'*A*z);
 C = 2*W/U^2;
 
 disp(['C per unit length [pF/m] = ' num2str(C/1e-12)])
+
+PlotPotential(no2xy, el2no, z)
 profile viewer;
 profsave
