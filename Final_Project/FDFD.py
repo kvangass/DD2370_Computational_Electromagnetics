@@ -13,7 +13,7 @@ from scipy.io import savemat
 
 
 def pos_to_index(nx, ny, Nx):
-    m = (ny-1)*Nx + nx - 1  # added -1 to adapt to python
+    m = (ny-1)*Nx + nx - 1  
     return m
 
 
@@ -77,9 +77,8 @@ def diff_matrices(Nx, Ny, dx, dy, k0):
     Generates the differential matrices for D_e_x , D_e_y, D_h_x, D_h_y
     m = (ny - 1)*Nx + nx
     Using column order grid
-    #TODO redo to implement the desired boundary conditions
     """
-    dx = dx*k0  # TODO understand this normalized dx
+    dx = dx*k0  
     dy = dy*k0
     N = Nx*Ny
     diagonals_x = [-1/dx*np.ones(N), 1/dx*np.ones(N)]
@@ -114,7 +113,6 @@ c0 = 299792458
 lambda0 = 3e-6 #0.9e-6
 k0 = 2*np.pi/lambda0
 
-# TODO the values have been normalized so eps_air may just be eps_r not eps
 n_clad = 1.0
 n_core = 3.0 #1.9
 
@@ -145,7 +143,6 @@ Ny2 = Ny*2
 dx = Lx / Nx
 dy = Ly / Ny
 
-# TODO was there something about requiring odd number of grid elements
 dx2 = Lx / Nx2
 dy2 = Ly / Ny2
 
@@ -216,7 +213,6 @@ ex_conductor_grid[0, :] = 1
 ex_conductor_grid[Ny-1, :] = 1
 #ex_conductor_grid[:, 0] = 1
 #ex_conductor_grid[:, Nx-1] = 1
-# TODO Trying to make all fields in the metal zero.
 # Boundary 2 and 4: Ey = 0
 # Left and Right of rectangular wg
 #ey_conductor_grid[0, :] = 1
@@ -263,18 +259,6 @@ print(n_eff)
 plt.figure(50)
 plt.title('eps_grid')
 plt.imshow(eps_grid2)
-"""
-x = np.linspace(0, Lx, num=Nx)
-y = np.linspace(0, -Ly, num=Ny)
-X, Y = np.meshgrid(x, y)
-for eig_index in range(N_eig):
-    plt.figure(eig_index+2*N_eig)
-    plt.title(f'Quiver: {eig_index}')
-    a_x = np.abs(fields[eig_index, 0, :, :])
-    a_y = np.abs(fields[eig_index, 1, :, :])
-    plt.quiver(X, Y, a_x, a_y, units='width')
-"""
-
 
 
 for eig_index in range(N_eig):
@@ -301,37 +285,3 @@ for eig_index in range(N_eig):
 
 plt.show()
 
-
-
-"""
-#fields = np.zeros((Ny, Nx, 2, N_eig))
-
-#ax = w_omega[0:Nx*Ny]
-#ay = w_omega[Nx*Ny:]
-#ax_grid = ax.reshape((Ny, Nx), order=order_str)
-#ay_grid = ay.reshape((Ny, Nx), order=order_str)
-#fields[:, :, 0, 0] = ax_grid
-#fields[:, :, 1, 0] = ay_grid
-
-
-
-plt.figure(1)
-plt.title('D_e_x')
-plt.spy(D_e_x)
-#plt.colorbar()
-
-plt.figure(2)
-plt.title('D_e_y')
-plt.spy(D_e_y)
-#plt.colorbar()
-
-plt.figure(3)
-plt.title('D_h_x')
-plt.spy(D_h_x)
-#plt.colorbar()
-
-plt.figure(4)
-plt.title('D_h_y')
-plt.spy(D_h_y)
-#plt.colorbar()
-"""
